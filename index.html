@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bibliotek: Knas'eli Knas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="main-frame">
+    <header>
+        <h1>Barnavdelningen</h1>
+    </header>
+    <main>
+        <section id="search-section">
+            <input type="text" id="search-bar" placeholder="Sök efter titel eller författare...">
+        </section>
+        <section id="book-list">
+            <h2>Våra Mest Omtyckta Barnböcker</h2>
+            <div class="book-row">
+                <!-- Info om böckerna -->
+            </div>
+        </section>
+        <section id="book-details" class="hidden">
+            <div class="details-box">
+                <div class="details-cover">
+                    <img id="details-cover-image" src="" alt="Bokomslag">
+                </div>
+                <div class="details-content">
+                    <h3 id="details-title"></h3>
+                    <p><strong>Författare:</strong> <span id="details-author"></span></p>
+                    <p><strong>Utgivningsår:</strong> <span id="details-year"></span></p>
+                    <p><strong>Antal sidor:</strong> <span id="details-pages"></span></p>
+                    <p><strong>Målgrupp:</strong> <span id="details-audience"></span></p>
+                    <p><strong>Övrig information:</strong> <span id="details-other-info"></span></p>
+                    <button id="read-book-button">Jag vill läsa boken!</button>
+                </div>
+            </div>
+            <button id="back-to-list">Tillbaka till listan</button>
+        </section>
+    </main>
+    <footer>
+        <p>© 2020 Bibliotek: Knas'eli Knas</p>
+    </footer>
+</div>
+    <script src="dist/main.js"></script>
+</body>
+</html>
+
