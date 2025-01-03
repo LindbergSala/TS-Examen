@@ -1,6 +1,3 @@
-// book-search.ts
-
-// 1. Skapa ett interface för bok-objekten
 interface Book {
     id: number;
     title: string;
@@ -11,10 +8,8 @@ interface Book {
     otherInfo?: string;
   }
   
-  // 2. API-url
   const API_URL: string = "https://my-json-server.typicode.com/zocom-christoffer-wallenberg/books-api/books";
   
-  // 3. Referenser till HTML-element (type casting)
   const bookListSection = document.getElementById("book-list") as HTMLElement;
   const bookDetailsSection = document.getElementById("book-details") as HTMLElement;
   const bookRow = document.querySelector(".book-row") as HTMLDivElement;
@@ -29,7 +24,6 @@ interface Book {
   const detailsOtherInfo = document.getElementById("details-other-info") as HTMLElement;
   const detailsCoverImage = document.getElementById("details-cover-image") as HTMLImageElement;
   
-  // 4. Objekt för bokomslag
   const bookCovers: Record<number, string> = {
     1: "Bilder/cover1.jpg",
     2: "Bilder/cover2.jpg",
@@ -41,10 +35,8 @@ interface Book {
     8: "Bilder/cover8.jpg"
   };
   
-  // 5. Array för att lagra alla böcker
   let allBooks: Book[] = [];
   
-  // 6. När sidan laddas, hämta data och visa böcker
   document.addEventListener("DOMContentLoaded", init);
   
   async function init(): Promise<void> {
@@ -58,12 +50,9 @@ interface Book {
     }
   }
   
-  // 7. Funktion för att visa böcker i listan
   function displayBooks(books: Book[]): void {
-    // Rensa tidigare innehåll
     bookRow.innerHTML = "";
   
-    // Skapa kort för varje bok
     books.forEach((book: Book) => {
       const bookCard = document.createElement("div");
       bookCard.className = "book-card";
@@ -76,15 +65,12 @@ interface Book {
         <p>Författare: ${book.author}</p>
       `;
   
-      // Klickhändelse för att visa detaljsida
       bookCard.addEventListener("click", () => showBookDetails(book, coverImage));
   
-      // Lägg in kortet i vår bok-rad
       bookRow.appendChild(bookCard);
     });
   }
   
-  // 8. Funktion för att visa detaljer om en bok
   function showBookDetails(book: Book, coverImage: string): void {
     detailsTitle.textContent = book.title;
     detailsAuthor.textContent = book.author;
@@ -94,24 +80,20 @@ interface Book {
     detailsOtherInfo.textContent = book.otherInfo || "Ingen övrig information finns att visa.";
     detailsCoverImage.src = coverImage;
   
-    // Visa/dölj rätt sektioner
     bookListSection.classList.add("hidden");
     bookDetailsSection.classList.remove("hidden");
     searchBar.classList.add("hidden");
   }
   
-  // 9. Klickhändelse för "Tillbaka"-knappen
   backButton.addEventListener("click", (): void => {
     bookListSection.classList.remove("hidden");
     bookDetailsSection.classList.add("hidden");
     searchBar.classList.remove("hidden");
   });
   
-  // 10. Händelse för sökfältet
   searchBar.addEventListener("input", (): void => {
     const query = searchBar.value.toLowerCase();
   
-    // Filtrera böcker baserat på titel eller författare
     const filteredBooks = allBooks.filter((book: Book) =>
       book.title.toLowerCase().includes(query) ||
       book.author.toLowerCase().includes(query)

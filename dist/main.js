@@ -1,5 +1,4 @@
 "use strict";
-// book-search.ts
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -9,9 +8,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-// 2. API-url
 const API_URL = "https://my-json-server.typicode.com/zocom-christoffer-wallenberg/books-api/books";
-// 3. Referenser till HTML-element (type casting)
+
 const bookListSection = document.getElementById("book-list");
 const bookDetailsSection = document.getElementById("book-details");
 const bookRow = document.querySelector(".book-row");
@@ -24,7 +22,7 @@ const detailsPages = document.getElementById("details-pages");
 const detailsAudience = document.getElementById("details-audience");
 const detailsOtherInfo = document.getElementById("details-other-info");
 const detailsCoverImage = document.getElementById("details-cover-image");
-// 4. Objekt för bokomslag
+
 const bookCovers = {
     1: "Bilder/cover1.jpg",
     2: "Bilder/cover2.jpg",
@@ -35,9 +33,9 @@ const bookCovers = {
     7: "Bilder/cover7.jpg",
     8: "Bilder/cover8.jpg"
 };
-// 5. Array för att lagra alla böcker
+
 let allBooks = [];
-// 6. När sidan laddas, hämta data och visa böcker
+
 document.addEventListener("DOMContentLoaded", init);
 function init() {
     return __awaiter(this, void 0, void 0, function* () {
@@ -52,11 +50,11 @@ function init() {
         }
     });
 }
-// 7. Funktion för att visa böcker i listan
+
 function displayBooks(books) {
-    // Rensa tidigare innehåll
+ 
     bookRow.innerHTML = "";
-    // Skapa kort för varje bok
+
     books.forEach((book) => {
         const bookCard = document.createElement("div");
         bookCard.className = "book-card";
@@ -66,13 +64,13 @@ function displayBooks(books) {
         <h3>${book.title}</h3>
         <p>Författare: ${book.author}</p>
       `;
-        // Klickhändelse för att visa detaljsida
+
         bookCard.addEventListener("click", () => showBookDetails(book, coverImage));
-        // Lägg in kortet i vår bok-rad
+
         bookRow.appendChild(bookCard);
     });
 }
-// 8. Funktion för att visa detaljer om en bok
+
 function showBookDetails(book, coverImage) {
     var _a, _b;
     detailsTitle.textContent = book.title;
@@ -82,21 +80,21 @@ function showBookDetails(book, coverImage) {
     detailsAudience.textContent = book.audience || "Ingen information tillgänglig";
     detailsOtherInfo.textContent = book.otherInfo || "Ingen övrig information finns att visa.";
     detailsCoverImage.src = coverImage;
-    // Visa/dölj rätt sektioner
+
     bookListSection.classList.add("hidden");
     bookDetailsSection.classList.remove("hidden");
     searchBar.classList.add("hidden");
 }
-// 9. Klickhändelse för "Tillbaka"-knappen
+
 backButton.addEventListener("click", () => {
     bookListSection.classList.remove("hidden");
     bookDetailsSection.classList.add("hidden");
     searchBar.classList.remove("hidden");
 });
-// 10. Händelse för sökfältet
+
 searchBar.addEventListener("input", () => {
     const query = searchBar.value.toLowerCase();
-    // Filtrera böcker baserat på titel eller författare
+
     const filteredBooks = allBooks.filter((book) => book.title.toLowerCase().includes(query) ||
         book.author.toLowerCase().includes(query));
     displayBooks(filteredBooks);
